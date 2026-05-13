@@ -1,0 +1,5 @@
+/target/
+@"
+.settings/
+REPORT_REVISED.md
+"@ | Add-Content -Path .gitignore -Encoding utf8

@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Set;
 
 public class OnTrackService {
+    public static final int STUDENT_ID_DIGITS = 9;
     public static final int MAX_TITLE_LENGTH = 100;
     public static final int MAX_MESSAGE_LENGTH = 500;
     private static final Set<String> VALID_STATUSES = new HashSet<>(Set.of("submitted", "in_review", "completed"));
@@ -110,8 +111,9 @@ public class OnTrackService {
         if (studentId == null || studentId.trim().isEmpty()) {
             throw new IllegalArgumentException("Student ID cannot be empty.");
         }
-        if (studentId.trim().length() < 4) {
-            throw new IllegalArgumentException("Student ID must have at least 4 characters.");
+        String normalizedId = studentId.trim();
+        if (!normalizedId.matches("^s\\d{" + STUDENT_ID_DIGITS + "}$")) {
+            throw new IllegalArgumentException("Student ID must match format s#########.");
         }
     }
 
